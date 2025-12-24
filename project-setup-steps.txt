@@ -1,0 +1,15 @@
+1. npm init -y
+2. npm i express cors mongoose dotenv 
+3. typescript in dev dependencies - npm install typescript --save-dev
+4. tsc -init
+5. "rootDir": "./src",
+    "outDir": "./dist",
+6. src/app.ts and express dummy code
+7. package file - build: tsc  
+8. npm run build then node ./dist/app.js code run
+9. create server.ts file mongoose example code here and app listen code move 
+10. create env and mongodb url and others
+11. src/app/config/index.ts - dotenv code with export the port and database url
+12. app file export and use the server import. 
+13. typescript and eslint, prettier setup follow the link, ts-node-dev install and package.json file script setup start, prettier, lint etc
+14. Git repo first create .gitignore file
