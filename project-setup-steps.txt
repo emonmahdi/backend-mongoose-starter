@@ -11,5 +11,5 @@
 10. create env and mongodb url and others
 11. src/app/config/index.ts - dotenv code with export the port and database url
 12. app file export and use the server import. 
-13. typescript and eslint, prettier setup follow the link, ts-node-dev install and package.json file script setup start, prettier, lint etc
+13. typescript and eslint, prettier setup follow the link(https://blog.logrocket.com/linting-typescript-eslint-prettier/), ts-node-dev install and package.json file script setup start, prettier, lint etc
 14. Git repo first create .gitignore file
