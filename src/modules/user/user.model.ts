@@ -11,7 +11,7 @@ const FullNameSchema = new Schema<FullNameInterface>(
     firstName: { type: String, required: true, trim: true },
     lastName: { type: String, required: true, trim: true },
   },
-  { _id: false }
+  { _id: false },
 )
 
 const addressSchema = new Schema<AddressInterface>(
@@ -20,7 +20,7 @@ const addressSchema = new Schema<AddressInterface>(
     city: { type: String, required: true },
     country: { type: String, required: true },
   },
-  { _id: false }
+  { _id: false },
 )
 const ordersSchema = new Schema<OrderInterface>(
   {
@@ -28,7 +28,7 @@ const ordersSchema = new Schema<OrderInterface>(
     price: { type: Number, required: true, min: 0 },
     quantity: { type: Number, required: true, min: 1 },
   },
-  { _id: false }
+  { _id: false },
 )
 
 const userSchema = new Schema<UserInterface>(
@@ -59,7 +59,7 @@ const userSchema = new Schema<UserInterface>(
   },
   {
     timestamps: true,
-  }
+  },
 )
 
 export const UserModel = model<UserInterface>('User', userSchema)
