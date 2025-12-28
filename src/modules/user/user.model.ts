@@ -63,6 +63,7 @@ const userSchema = new Schema<UserInterface>(
   }
 )
 
+// password hashing middleware
 userSchema.pre('save', async function () {
   if (!this.isModified('password')) {
     return
