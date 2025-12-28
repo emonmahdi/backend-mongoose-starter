@@ -6,10 +6,16 @@ const createUser = async (req: Request, res: Response) => {
     const userData = req.body
     const result = await UserServices.createUserIntoDB(userData)
 
+    //
+    const userObject = result.toObject()
+
+    // delete to the response the password
+    delete userObject?.password
+
     res.status(200).json({
       success: true,
       message: 'User create Successfully',
-      data: result,
+      data: userObject,
     })
   } catch (error) {
     res.status(500).json({
