@@ -127,10 +127,39 @@ const deleteUser = async (req: Request, res: Response) => {
   }
 }
 
+const addOrder = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params
+    const order = req.body
+
+    await UserServices.addOrderToUser(Number(userId), order)
+
+    res.status(200).json({
+      success: true,
+      message: 'Order created Successfully',
+      data: null,
+    })
+  } catch (error) {
+    if (error instanceof Error && error.name === 'NotFoundError') {
+      return res.status(404).json({
+        success: false,
+        message: error.message,
+        data: null,
+      })
+    }
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to Order',
+      data: null,
+    })
+  }
+}
+
 export const UserController = {
   createUser,
   getAllUsers,
   getSingleUser,
   updateUser,
   deleteUser,
+  addOrder,
 }
