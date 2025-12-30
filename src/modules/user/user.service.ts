@@ -55,6 +55,20 @@ const addOrderToUser = async (
   await user.save()
 }
 
+const getOrdersByUserId = async (userId: number): Promise<OrderInterface[]> => {
+  const user = await UserModel.findOne({ userId })
+
+  if (!user) {
+    const error = new Error(`User with id ${userId} not found`)
+    error.name = 'NotFoundError'
+    throw error
+  }
+
+  return user.orders || []
+}
+
+
+
 export const UserServices = {
   createUserIntoDB,
   getAllUsersIntoDB,
@@ -62,4 +76,5 @@ export const UserServices = {
   updateUserIntoDB,
   deleteUserFromDB,
   addOrderToUser,
+  getOrdersByUserId,
 }

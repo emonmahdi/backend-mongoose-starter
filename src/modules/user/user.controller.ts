@@ -155,6 +155,35 @@ const addOrder = async (req: Request, res: Response) => {
   }
 }
 
+const getOrders = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params
+
+    const orders = await UserServices.getOrdersByUserId(Number(userId))
+
+    return res.status(200).json({
+      success: true,
+      message: 'Order fetched successfully!',
+      data: {
+        orders,
+      },
+    })
+  } catch (error) {
+    if (error instanceof Error && error.name === 'NotFoundError') {
+      return res.status(404).json({
+        success: false,
+        message: error.message,
+        data: null,
+      })
+    }
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to fetch orders',
+      data: null,
+    })
+  }
+}
+
 export const UserController = {
   createUser,
   getAllUsers,
@@ -162,4 +191,5 @@ export const UserController = {
   updateUser,
   deleteUser,
   addOrder,
+  getOrders,
 }
