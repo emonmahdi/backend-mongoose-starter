@@ -68,6 +68,21 @@ const getOrdersByUserId = async (userId: number): Promise<OrderInterface[]> => {
 }
 
 
+const calculateTotalOrderPrice = async (userId: number): Promise<number> => {
+  const user = await UserModel.findOne({ userId })
+
+  if (!user) {
+    const error = new Error('User Not found')
+    error.name = 'UserNotFound'
+    throw error
+  }
+
+  const totalPrice = user.orders.reduce((sum, order) => {
+    return sum + order.price * order.quantity
+  }, 0)
+
+  return Number(totalPrice.toFixed(2))
+}
 
 export const UserServices = {
   createUserIntoDB,
@@ -77,4 +92,5 @@ export const UserServices = {
   deleteUserFromDB,
   addOrderToUser,
   getOrdersByUserId,
+  calculateTotalOrderPrice,
 }
